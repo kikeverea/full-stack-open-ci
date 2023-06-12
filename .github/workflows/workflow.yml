@@ -3,14 +3,14 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - master
+      - main
 
 #  pull_request:
 #    branches: [master]
 #    types: [opened, synchronize]
 
 jobs:
-  simple_deployment_pipeline:
+  deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
       - run: echo "Hello World"
