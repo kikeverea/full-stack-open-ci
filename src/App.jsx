@@ -184,7 +184,6 @@ const App = () => {
         phoneInput={phoneInput}
         onSubmit={onPersonFormSubmit}
       />
-      <h2>Numbers</h2>
       <PhoneBook persons={showPersons} onPersonDelete={deletePerson} />
     </div>
   )

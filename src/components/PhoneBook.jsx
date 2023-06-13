@@ -1,13 +1,18 @@
 import Person from './Person'
 
 const PhoneBook = ({ persons, onPersonDelete }) =>
-  persons.length === 0
-    ? <p>No phones listed</p>
-    :
-    <table>
-      <PhoneBookHeader />
-      <PersonsList persons={persons} onPersonDelete={onPersonDelete} />
-    </table>
+  <>
+    <h2>Numbers</h2>
+    {
+      !persons || persons.length === 0
+        ? <p>No phones listed</p>
+        :
+        <table>
+          <PhoneBookHeader />
+          <PersonsList persons={persons} onPersonDelete={onPersonDelete} />
+        </table>
+    }
+  </>
 
 const PhoneBookHeader = () =>
   <thead>

@@ -1,10 +1,12 @@
-const Input = ({ label, state, onStateChange }) => {
+const Input = ({ id, label, state, onStateChange }) => {
   const onChange = (event) =>
     onStateChange(event.target.value)
 
   return(
     <div>
-      {label}: <input value={state} onChange={onChange} />
+      <label htmlFor={ id }>{ label }</label>
+      &nbsp;&nbsp;
+      <input id={ id } value={state} onChange={onChange} />
     </div>
   )
 }

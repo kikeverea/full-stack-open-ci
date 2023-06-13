@@ -6,11 +6,13 @@ const NewPersonForm = ({ nameInput, phoneInput, onSubmit }) =>
     <form onSubmit={onSubmit}>
       <div>
         <Input
+          id='name_input'
           label="name "
           state={nameInput.state}
           onStateChange={nameInput.onChange} />
 
         <Input
+          id='phone_input'
           label="phone"
           state={phoneInput.state}
           onStateChange={phoneInput.onChange} />
