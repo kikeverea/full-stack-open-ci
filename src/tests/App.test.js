@@ -5,8 +5,8 @@ import PhoneBook from '../components/PhoneBook'
 
 describe('App component is rendered correctly', () => {
 
-  beforeEach (() => {
-    render(<App />)
+  beforeEach (async () => {
+    await render(<App />)
   })
 
   it('Renders title', () =>
@@ -31,12 +31,12 @@ describe('App component is rendered correctly', () => {
 
 describe('Phonebook component is rendered correctly', () => {
 
-  it('Renders a line entry for every person', () => {
+  it('Renders a line entry for every person', async () => {
     const persons = [
       { name: 'Jon Doe', number: '555-555-555' },
       { name: 'Jane Doe', number: '333-333-333' }
     ]
-    render(<PhoneBook persons={persons}/>)
+    await render(<PhoneBook persons={persons}/>)
 
     expect(screen.getByText('Name', { exact: false })).toBeDefined()
     expect(screen.getByText('Phone Number', { exact: false })).toBeDefined()
@@ -49,8 +49,8 @@ describe('Phonebook component is rendered correctly', () => {
     expect(screen.getAllByRole('button', { name: 'delete' })).toHaveLength(persons.length)
   })
 
-  it('Renders a message if phonebook is empty', () => {
-    render(<PhoneBook persons={[]}/>)
+  it('Renders a message if phonebook is empty', async () => {
+    await render(<PhoneBook persons={[]}/>)
 
     expect(screen.getByText('No phones listed')).toBeDefined()
 

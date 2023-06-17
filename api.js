@@ -4,7 +4,7 @@ const api = require('express').Router()
 api.get('/', (request, response) => {
   Person.find({}).then(persons =>
     response.json(persons)
-  )
+  ).catch(error => response.json(error))
 })
 
 api.get('/:id', (request, response, next) => {
@@ -51,6 +51,7 @@ api.post('/', (request, response, next) => {
           })
       }
     })
+    .catch(e => next(e))
 })
 
 api.put('/:id', (request, response, next) => {
@@ -69,8 +70,7 @@ api.put('/:id', (request, response, next) => {
   Person.findByIdAndUpdate(
     request.params.id,
     { name, number },
-    { new: true, runValidators: true, context: 'query' }
-  )
+    { new: true, runValidators: true, context: 'query' })
     .then(updatedPerson => {
       response.status(200).json(updatedPerson)
     })
@@ -79,9 +79,10 @@ api.put('/:id', (request, response, next) => {
     })
 })
 
-api.delete('/:id', (request, response) => {
+api.delete('/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
     .then(() => response.status(204).end())
+    .catch(e => next(e))
 })
 
 const prepareForSave = (body) => {

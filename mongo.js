@@ -30,7 +30,9 @@ if (args.length === 3) {
         result.forEach(person => console.log(person))
         mongoose.connection.close()
       })
+        .catch(e => console.log('Not connected...', e))
     })
+    .catch(e => console.log(`Could not connect to ${ url }`, e))
 }
 else {
   // create person
@@ -44,6 +46,8 @@ else {
     .connect(url)
     .then(() =>
       newPerson.save()
-        .then(() =>
-          mongoose.connection.close()))
+        .then(() => mongoose.connection.close())
+        .catch(e => console.log('Could not close connection', e))
+    )
+    .catch(e => console.log(`Could not connect to ${ url }`, e))
 }

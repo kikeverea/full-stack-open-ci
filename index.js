@@ -37,6 +37,7 @@ app.get('/info', (request, response) =>
         <p>${new Date()}</p>`
       )
     })
+    .catch(e => response.json(e))
 )
 
 const errorHandler = (error, request, response, next) => {

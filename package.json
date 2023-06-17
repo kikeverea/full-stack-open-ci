@@ -9,7 +9,7 @@
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "build": "rm -rf build && react-scripts build",
-    "test": "CI=true react-scripts test"
+    "test": "CI=true react-scripts test --runInBand"
   },
   "author": "Enrique Verea",
   "dependencies": {

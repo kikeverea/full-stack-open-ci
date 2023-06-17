@@ -24,6 +24,7 @@ const App = () => {
     personService
       .getAll()
       .then(persons => setPersons(persons))
+      .catch(() => setPersons([]))
   }, [])
 
   const onPersonFormSubmit = (event) => {
