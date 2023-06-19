@@ -2,7 +2,7 @@ const express = require('express')
 const Person = require('./models/Person')
 const router = require('./api')
 const cors = require('cors')
-const ENV = process.env.ENV || 'DEV'
+const ENV = process.env.ENV || 'DEFAULT'
 const PORT = ENV === 'DEV' ? 3001 : 3000
 
 const morgan = require('morgan')

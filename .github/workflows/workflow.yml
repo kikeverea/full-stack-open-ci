@@ -34,6 +34,11 @@ jobs:
       - name: setup deploy
         uses: superfly/flyctl-actions/setup-flyctl@master
 
+      - name: setup db
+        run: flyctl secrets set PERSONS_DB_URI="${{ secrets.PERSONS_DB_URI }}" --stage
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
       - name: deploy
         if: ${{ github.event_name == 'push' }}
         run: flyctl deploy --remote-only --wait-timeout 60

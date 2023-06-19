@@ -11,9 +11,6 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV=production
-ENV ENV=PROD
-ENV PERSONS_DB_URI='mongodb+srv://admin:mongo123@cluster0.9mfcr.mongodb.net/phonebook?retryWrites=true&w=majority'
-
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
