@@ -18,6 +18,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "http-proxy-middleware": "^2.0.6",
     "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "react": "^18.2.0",
@@ -29,6 +30,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
+    "@flydotio/dockerfile": "^0.2.15",
     "@testing-library/jest-dom": "^5.16.5",
     "eslint": "^8.21.0",
     "eslint-plugin-html": "^7.1.0",
@@ -38,7 +40,6 @@
     "nodemon": "^2.0.19",
     "ts-jest": "^29.1.0"
   },
-  "proxy": "http://localhost:3001",
   "browserslist": {
     "production": [
       ">0.2%",

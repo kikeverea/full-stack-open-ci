@@ -1,0 +1,6 @@
+node_modules/
+.env
+build/
+.idea/
+db.json
+src/setupProxy.js

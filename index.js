@@ -2,7 +2,8 @@ const express = require('express')
 const Person = require('./models/Person')
 const router = require('./api')
 const cors = require('cors')
-const PORT = process.env.PORT || 3001
+const ENV = process.env.ENV || 'DEV'
+const PORT = ENV === 'DEV' ? 3001 : 3000
 
 const morgan = require('morgan')
 const morganFormat = ':method :url :status :res[content-length] - :response-time ms :body'
@@ -14,8 +15,10 @@ morgan.token('body', req => {
 
 const app = express()
 
+if (ENV === 'DEV')
+  app.use(cors())
+
 app.use(express.json())
-app.use(cors())
 
 app.use(express.static('build'))
 app.use('/api/persons', router)
