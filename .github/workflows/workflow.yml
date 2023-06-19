@@ -31,25 +31,15 @@ jobs:
       - name: test
         run: npm run test
 
-#      - name: setup deploy
-#        uses: superfly/flyctl-actions/setup-flyctl@master
-#
-#      - name: deploy
-#        if: ${{ github.event_name == 'push' }}
-#        run: flyctl deploy --remote-only --wait-timeout 60
-#        env:
-#          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-#
-#      - name: Notify build failure
-#        uses: rjstone/discord-webhook-notify@v1.0.4
-#        if: failure()
-#        with:
-#          severity: error
-#          text: Build failed
-#          description: commit
-#          details: ${{ github.event.head_commit.url }} by ${{ github.event.pusher.name }} broke the build
-#          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-#
+      - name: setup deploy
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: deploy
+        if: ${{ github.event_name == 'push' }}
+        run: flyctl deploy --remote-only --wait-timeout 60
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
 #      - name: rollback
 #        if: failure()
 #        shell: bash
