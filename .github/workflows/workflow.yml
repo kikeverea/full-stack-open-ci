@@ -45,6 +45,14 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
+      - name: Notify build failure
+        uses: ShaunLWM/action-pushbullet@master
+        if: failure()
+        env:
+          PB_TOKEN: ${{ secrets.PB_TOKEN }}
+          PB_TITLE: Build Failed
+          PB_TEXT: Your project build failed. ${{ github.event.head_commit.url }} by ${{ github.event.pusher.name }} broke the build
+
       - name: rollback
         if: failure()
         shell: bash
@@ -71,17 +79,15 @@ jobs:
           DEFAULT_BUMP: minor
           WITH_V: true
 
-#  notify_deploy_success:
-#    needs: [ tag_release ]
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - name: Notify success
-#        uses: rjstone/discord-webhook-notify@v1.0.4
-#        if: ${{ github.event_name == 'push' }}
-#        with:
-#          severity: info
-#          text: A new version of Pokedex deployed
-#          description: to https://cold-star-519.fly.dev/ by ${{ github.event.pusher.name }}
-#          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-
+  notify_deploy_success:
+    needs: [ tag_release ]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Notify success
+        if: ${{ github.event_name == 'push' }}
+        uses: ShaunLWM/action-pushbullet@master
+        env:
+          PB_TOKEN: ${{ secrets.PB_TOKEN }}
+          PB_TITLE: Deploy succeeded
+          PB_TEXT: to https://dawn-glade-7416.fly.dev/ by ${{ github.event.pusher.name }}
 
