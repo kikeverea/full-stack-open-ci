@@ -1,19 +1,14 @@
 name: Deployment pipeline
 
 on:
-  push:
-    branches:
-      - main
-
-#  pull_request:
-#    branches: [master]
-#    types: [opened, synchronize]
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize ]
 
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
-      - run: echo "Hello World"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
